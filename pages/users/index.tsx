@@ -24,7 +24,7 @@ import {
 } from "@mui/material";
 
 const UsersPage: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<User[]>();
   const [selectedUser, setSelectedUser] = useState<User>();
   const [open, setOpen] = useState<boolean>(false);
   const [openInsert, setOpenInsert] = useState<boolean>(false);
@@ -91,7 +91,7 @@ const UsersPage: React.FC = () => {
       </div>
       <Container maxWidth={false}>
         <Grid container spacing={3} style={{ marginTop: "20px" }}>
-          {users.map((user: User) => (
+          {users?.map((user: User) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={user.id}>
               <Card>
                 <CardMedia
