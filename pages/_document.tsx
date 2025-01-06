@@ -1,10 +1,17 @@
-import * as React from 'react';
-import { Html, Head, Main, NextScript, DocumentProps, DocumentContext } from 'next/document';
+import * as React from "react";
+import {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentProps,
+  DocumentContext,
+} from "next/document";
 import {
   DocumentHeadTags,
   DocumentHeadTagsProps,
   documentGetInitialProps,
-} from '@mui/material-nextjs/v14-pagesRouter';
+} from "@mui/material-nextjs/v14-pagesRouter";
 
 export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
   return (

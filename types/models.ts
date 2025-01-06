@@ -1,17 +1,18 @@
-import { User as UserType, Post as PostType, Account as AccountType} from '@prisma/client';
-
- export type User = {
+export type User = {
     name: string | null;
     id: string;
     email: string;
+    image: string | null;
     password?: string | null;
     emailVerified?: Date | null;
-    image: string | null;
     account_creation_date: Date;
     country_of_residence?: string | null;
     phone_number?: string | null;
     address?: string | null;
     gender?: string | null;
+    accounts?: Account[];
+    posts?: Post[];
+    
 }
 export type Account = {
   id: number;
@@ -32,13 +33,13 @@ export type Post = {
   content: string | null;
   published: boolean;
   authorId: string | null;
-  author: UserType;
+  author: User;
 }
-// Extend the User type for additional properties (optional)
+/* // Extend the User type for additional properties (optional)
 export type UserWithPosts = UserType & {
   posts: PostType[];
 };
 // Extend the User type for additional properties (optional)
 export type UserWithAccount = UserType & {
   accounts: AccountType[];
-};
+}; */

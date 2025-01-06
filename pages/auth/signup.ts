@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcrypt';
+import { prisma } from '../../lib/prisma';
 
 export default async function signup(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {

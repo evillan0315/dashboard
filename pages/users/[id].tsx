@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { Container, Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { User } from '../../types/models';
+import { SelectChangeEvent, Container, Typography, TextField, FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
 
 const UserPage: React.FC = () => {
   const router = useRouter();

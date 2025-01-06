@@ -1,19 +1,21 @@
-import * as React from 'react';
-import { AppProvider } from '@toolpad/core/nextjs';
-import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-import { PageContainer } from '@toolpad/core/PageContainer';
-import Head from 'next/head';
-import { AppCacheProvider } from '@mui/material-nextjs/v14-pagesRouter';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonIcon from '@mui/icons-material/People';
-import type { NextPage } from 'next';
-import type { AppProps } from 'next/app';
-import type { Navigation } from '@toolpad/core/AppProvider';
-import { SessionProvider, signIn, signOut, useSession } from 'next-auth/react';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import * as React from "react";
+import Head from "next/head";
+import type { NextPage } from "next";
+import type { AppProps } from "next/app";
+import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 
-import theme from '../theme';
+import { Navigation } from "@toolpad/core";
+import { AppProvider } from "@toolpad/core/AppProvider";
+import { DashboardLayout } from "@toolpad/core/DashboardLayout";
+import { PageContainer } from "@toolpad/core/PageContainer";
+
+import CircularProgress from "@mui/material/CircularProgress";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import PersonIcon from "@mui/icons-material/Person";
+import { Box } from "@mui/material";
+import { AppCacheProvider } from "@mui/material-nextjs/v13-pagesRouter";
+
+import theme from "../theme";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
@@ -26,23 +28,23 @@ type AppPropsWithLayout = AppProps & {
 
 const NAVIGATION: Navigation = [
   {
-    kind: 'header',
-    title: 'Applications',
+    kind: "header",
+    title: "Applications",
   },
   {
-    segment: '',
-    title: 'Dashboard',
+    segment: "",
+    title: "Dashboard",
     icon: <DashboardIcon />,
   },
   {
-    segment: 'users',
-    title: 'Users',
+    segment: "users",
+    title: "Users",
     icon: <PersonIcon />,
   },
 ];
 
 const BRANDING = {
-  title: 'Dashboard',
+  title: "Dashboard",
 };
 
 const AUTHENTICATION = {
@@ -52,10 +54,15 @@ const AUTHENTICATION = {
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const { status } = useSession();
-  
-  if (status === 'loading') {
+
+  if (status === "loading") {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+      >
         <CircularProgress />
       </Box>
     );
@@ -109,9 +116,7 @@ export default function App(props: AppPropsWithLayout) {
 
   return (
     <AppCacheProvider {...props}>
-      <SessionProvider session={session}>
-        {pageContent}
-      </SessionProvider>
+      <SessionProvider session={session}>{pageContent}</SessionProvider>
     </AppCacheProvider>
   );
 }

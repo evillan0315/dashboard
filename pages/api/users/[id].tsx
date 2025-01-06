@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getUserById } from '@/utils/user';
+import { getUserById } from '../../../utils/user';
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
