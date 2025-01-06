@@ -30,7 +30,7 @@ Credentials({
     }
     return {
       id: 'test',
-      name: 'Test User',
+      name: 'Test',
       email: String(c.email),
     };
   },
