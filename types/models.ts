@@ -1,8 +1,8 @@
 export type User  = {
-  name: string | null;
   id: string;
+  name: string | null;
   email: string;
-  image: string | null;
+  image?: string | null;
   password?: string | null;
   emailVerified?: Date | null;
   account_creation_date: Date;
@@ -34,9 +34,9 @@ export type Post = {
 }
 // Extend the User type for additional properties (optional)
 export type UserWithPosts = User & {
-  posts: Post[];
+  posts?: Post[];
 };
 // Extend the User type for additional properties (optional)
 export type UserWithAccount = User & {
-  accounts: Account[];
+  accounts?: Account[];
 };

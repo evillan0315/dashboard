@@ -7,8 +7,7 @@ export const getAllUsers = async (): Promise<User[]> => {
 };
 export const getUserById = async (id: string): Promise<User | null> => {
   return await prisma.user.findUnique({
-    where: { id },
-    include: { accounts: true, posts: true },
+    where: { id }
   });
 }
 export const getUserByIdWithAccount = async (id: string): Promise<UserWithAccount | null> => {
@@ -17,7 +16,6 @@ export const getUserByIdWithAccount = async (id: string): Promise<UserWithAccoun
     include: { accounts: true },
   });
 };
-
 
 // Fetch a user by ID with their posts
 export const getUserByIdWithPosts = async (id: string): Promise<UserWithPosts | null> => {
