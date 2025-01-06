@@ -1,8 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import axios from 'axios';
-import { User } from '../../types/models';
-import { SelectChangeEvent, Container, Typography, TextField, FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { User } from "../../types/models";
+import {
+  SelectChangeEvent,
+  Container,
+  Typography,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Button,
+} from "@mui/material";
 
 const UserPage: React.FC = () => {
   const router = useRouter();
@@ -23,29 +33,39 @@ const UserPage: React.FC = () => {
 
       setFormValues(response.data);
     } catch (error) {
-      console.error('Failed to fetch user:', error);
+      console.error("Failed to fetch user:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | { name?: string; value: unknown }> | SelectChangeEvent<string | null>) => {
-    const { name, value } = e.target as HTMLInputElement | { name: string; value: string | null };
+  const handleInputChange = (
+    e:
+      | React.ChangeEvent<
+          | HTMLInputElement
+          | HTMLTextAreaElement
+          | { name?: string; value: unknown }
+        >
+      | SelectChangeEvent<string | null>
+  ) => {
+    const { name, value } = e.target as
+      | HTMLInputElement
+      | { name: string; value: string | null };
     if (formValues && name) {
-      setFormValues({ ...formValues, [name]: value ?? '' });
+      setFormValues({ ...formValues, [name]: value ?? "" });
     }
   };
 
   const handleUpdateUser = async () => {
     if (formValues) {
       await axios.put(`/api/users/${id}`, formValues);
-      router.push('/users');
+      router.push("/users");
     }
   };
 
   const handleDeleteUser = async () => {
     await axios.delete(`/api/users/${id}`);
-    router.push('/users');
+    router.push("/users");
   };
 
   if (loading) {
@@ -62,12 +82,26 @@ const UserPage: React.FC = () => {
         Update User
       </Typography>
       <form onSubmit={handleUpdateUser}>
-        <TextField label="Name" name="name" value={formValues.name} onChange={handleInputChange} fullWidth required />
-        <TextField label="Email" name="email" value={formValues.email} onChange={handleInputChange} fullWidth required />
+        <TextField
+          label="Name"
+          name="name"
+          value={formValues.name}
+          onChange={handleInputChange}
+          fullWidth
+          required
+        />
+        <TextField
+          label="Email"
+          name="email"
+          value={formValues.email}
+          onChange={handleInputChange}
+          fullWidth
+          required
+        />
         <TextField
           label="Creation date"
           name="account_creation_date"
-          value={formValues.account_creation_date.toISOString().split('T')[0]}
+          value={formValues.account_creation_date.toISOString().split("T")[0]}
           onChange={handleInputChange}
           fullWidth
           required
@@ -89,10 +123,21 @@ const UserPage: React.FC = () => {
           fullWidth
           required
         />
-        <TextField label="Address" name="address" value={formValues.address} onChange={handleInputChange} fullWidth required />
+        <TextField
+          label="Address"
+          name="address"
+          value={formValues.address}
+          onChange={handleInputChange}
+          fullWidth
+          required
+        />
         <FormControl fullWidth>
           <InputLabel>Gender</InputLabel>
-          <Select name="gender" value={formValues.gender} onChange={handleInputChange}>
+          <Select
+            name="gender"
+            value={formValues.gender}
+            onChange={handleInputChange}
+          >
             <MenuItem value="Male">Male</MenuItem>
             <MenuItem value="Female">Female</MenuItem>
             <MenuItem value="Other">Other</MenuItem>
@@ -101,7 +146,11 @@ const UserPage: React.FC = () => {
         <Button type="submit" variant="contained" color="primary">
           Update
         </Button>
-        <Button variant="contained" color="secondary" onClick={handleDeleteUser}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleDeleteUser}
+        >
           Delete
         </Button>
       </form>

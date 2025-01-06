@@ -1,9 +1,12 @@
-import * as React from 'react';
-import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { SignInPage } from '@toolpad/core/SignInPage';
-import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import { auth, providerMap } from '../../auth';
+import * as React from "react";
+import type {
+  GetServerSidePropsContext,
+  InferGetServerSidePropsType,
+} from "next";
+import { SignInPage } from "@toolpad/core/SignInPage";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
+import { auth, providerMap } from "../../auth";
 
 export default function SignIn({
   providers,
@@ -18,19 +21,19 @@ export default function SignIn({
             provider.id,
             formData
               ? {
-                  email: formData.get('email') as string,
-                  password: formData.get('password') as string,
+                  email: formData.get("email") as string,
+                  password: formData.get("password") as string,
                   redirect: false,
                 }
-              : { callbackUrl: callbackUrl ?? '/' },
+              : { callbackUrl: callbackUrl ?? "/" }
           );
           if (signInResponse && signInResponse.error) {
             // Handle Auth.js errors
             return {
               error:
-                signInResponse.error === 'CredentialsSignin'
-                  ? 'Invalid credentials'
-                  : 'An error with Auth.js occurred',
+                signInResponse.error === "CredentialsSignin"
+                  ? "Invalid credentials"
+                  : "An error with Auth.js occurred",
               type: signInResponse.error,
             };
           }
@@ -38,15 +41,15 @@ export default function SignIn({
           // manually redirect to the callback URL
           // since the `redirect: false` option was used
           // to be able to display error messages on the same page without a full page reload
-          if (provider.id === 'credentials') {
-            router.push(callbackUrl ?? '/');
+          if (provider.id === "credentials") {
+            router.push(callbackUrl ?? "/");
           }
           return {};
         } catch (error) {
           // An error boundary must exist to handle unknown errors
           return {
-            error: 'Something went wrong.',
-            type: 'UnknownError',
+            error: "Something went wrong.",
+            type: "UnknownError",
           };
         }
       }}
@@ -65,7 +68,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   // Note: Make sure not to redirect to the same page
   // To avoid an infinite loop!
   if (session) {
-    return { redirect: { destination: '/' } };
+    return { redirect: { destination: "/" } };
   }
 
   return {

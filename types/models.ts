@@ -1,19 +1,17 @@
-export type User = {
-    name: string | null;
-    id: string;
-    email: string;
-    image: string | null;
-    password?: string | null;
-    emailVerified?: Date | null;
-    account_creation_date: Date;
-    country_of_residence?: string | null;
-    phone_number?: string | null;
-    address?: string | null;
-    gender?: string | null;
-    accounts?: Account[];
-    posts?: Post[];
-    
+export type User  = {
+  name: string | null;
+  id: string;
+  email: string;
+  image: string | null;
+  password?: string | null;
+  emailVerified?: Date | null;
+  account_creation_date: Date;
+  country_of_residence?: string | null;
+  phone_number?: string | null;
+  address?: string | null;
+  gender?: string | null;
 }
+
 export type Account = {
   id: number;
   userId: string;
@@ -33,13 +31,12 @@ export type Post = {
   content: string | null;
   published: boolean;
   authorId: string | null;
-  author: User;
 }
-/* // Extend the User type for additional properties (optional)
-export type UserWithPosts = UserType & {
-  posts: PostType[];
+// Extend the User type for additional properties (optional)
+export type UserWithPosts = User & {
+  posts: Post[];
 };
 // Extend the User type for additional properties (optional)
-export type UserWithAccount = UserType & {
-  accounts: AccountType[];
-}; */
+export type UserWithAccount = User & {
+  accounts: Account[];
+};
