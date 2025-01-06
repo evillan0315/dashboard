@@ -2,7 +2,7 @@ import { prisma } from "../lib/prisma";
 import { User, UserWithAccount, UserWithPosts } from "../types/models";
 
 // Fetch all users
-export const getAllUsers = async (): Promise<User[]| null> => {
+export const getAllUsers = async (): Promise<User[] | null> => {
   return await prisma.user.findMany();
 };
 export const getUserById = async (id: string): Promise<User | null> => {
