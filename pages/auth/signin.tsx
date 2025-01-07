@@ -52,7 +52,7 @@ export default function SignIn({
             console.log("provider", provider);
             const redirect_uri = "http://localhost:3000/api/auth/callback/linkedin";
             const code = router.query.code;
-            console.log("code", code);
+            /* console.log("code", code);
             if (code) {
               router.push("/api/auth/callback/linkedin?"+code+"&state=DCEeFWf45A53sdfKef424&redirect_uri="+redirect_uri);
               const response = await fetch("/api/auth/callback/linkedin", {
@@ -73,7 +73,7 @@ export default function SignIn({
               }
 
               //return {};
-            }
+            } */
 
             //console.log('router', router);
           }

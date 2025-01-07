@@ -1,4 +1,4 @@
-"use client";
+
 import { Roboto,DM_Sans, Poppins, Lato} from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
 
@@ -63,7 +63,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: `${poppins.style.fontFamily}, ${lato.style.fontFamily}, sans-serif`,
+    fontFamily: `${poppins.style.fontFamily}, ${lato.style.fontFamily}, ${lato.style.fontFamily}, sans-serif`,
     fontSize: 10,
     h1: {
       fontSize: '2.5rem',

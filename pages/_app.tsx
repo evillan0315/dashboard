@@ -18,7 +18,9 @@ import { Box } from "@mui/material";
 import { AppCacheProvider } from "@mui/material-nextjs/v13-pagesRouter";
 
 import theme from "../theme";
+import { disableConsoleLogs } from "../utils/disableConsole";
 
+disableConsoleLogs(); 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
   requireAuth?: boolean;

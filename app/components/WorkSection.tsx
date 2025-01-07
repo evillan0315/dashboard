@@ -1,8 +1,18 @@
 // components/WorkSection.tsx
 
-import React from 'react';
-import { Box, Typography, Card, CardContent, Divider, Grid, Chip, Grid2, Stack } from '@mui/material';
-import WorkIcon from '@mui/icons-material/Work';
+import React from "react";
+import {
+  Box,
+  Typography,
+  Card,
+  CardContent,
+  Divider,
+  Grid,
+  Chip,
+  Grid2,
+  Stack,
+} from "@mui/material";
+import WorkIcon from "@mui/icons-material/Work";
 
 interface Work {
   name: string;
@@ -21,25 +31,29 @@ const WorkSection: React.FC<WorkSectionProps> = ({ work }) => {
   return (
     <Box my={4} sx={{ width: "100%" }}>
       <Typography
-              variant="h3"
-              gutterBottom
-              align="left"
-              sx={{ fontWeight: "300" }}
-            >
-              Work Experience
-            </Typography>
+        variant="h3"
+        gutterBottom
+        align="left"
+        sx={{ fontWeight: "300" }}
+      >
+        Work Experience
+      </Typography>
       {work.map((job, index) => (
         <Card key={index} sx={{ mb: 3, boxShadow: 3, borderRadius: 2 }}>
           <CardContent>
             <Grid container alignItems="center" spacing={2}>
               <Grid item>
-                <WorkIcon sx={{ fontSize: 40, color: 'primary.main' }} />
+                <WorkIcon sx={{ fontSize: 40, color: "primary.main" }} />
               </Grid>
               <Grid item xs>
-                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                <Typography variant="h6" sx={{ fontWeight: "bold" }}>
                   {job.position} at {job.name}
                 </Typography>
-                <Typography variant="body2" color="textSecondary" sx={{ fontStyle: 'italic' }}>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  sx={{ fontStyle: "italic" }}
+                >
                   {job.startDate} - {job.endDate}
                 </Typography>
               </Grid>
@@ -51,17 +65,23 @@ const WorkSection: React.FC<WorkSectionProps> = ({ work }) => {
             <Box sx={{ mt: 2 }}>
               {job.highlights.length > 0 && (
                 <Box>
-                  <Typography variant="body2" color="textSecondary" sx={{ fontWeight: 'bold', mb: 1 }}>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    sx={{ fontWeight: "bold", mb: 1 }}
+                  >
                     Key Highlights:
                   </Typography>
                   <Stack direction="row" spacing={1}>
                     {job.highlights.map((highlight, idx) => (
                       <>
-                      <Card variant="outlined" color='cyan'>
-                        <CardContent sx={{lineHeight: "-1em"}}>
-                            <Typography variant="caption" fontSize={11}>{highlight}</Typography>
-                        </CardContent>
-                      </Card>
+                        <Card variant="outlined" color="cyan">
+                          <CardContent sx={{ lineHeight: "-1em" }}>
+                            <Typography variant="caption" fontSize={11}>
+                              {highlight}
+                            </Typography>
+                          </CardContent>
+                        </Card>
                       </>
                     ))}
                   </Stack>
