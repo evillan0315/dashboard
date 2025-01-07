@@ -37,15 +37,49 @@ export default function SignIn({
               type: signInResponse.error,
             };
           }
+
           // If the sign in was successful,
           // manually redirect to the callback URL
           // since the `redirect: false` option was used
           // to be able to display error messages on the same page without a full page reload
           if (provider.id === "credentials") {
-            router.push(callbackUrl ?? "/");
+            router.push(callbackUrl ?? "/auth/signin");
+          }
+          if (provider.id === "linkedin") {
+            console.log("formData", formData);
+            console.log("signInResponse", signInResponse);
+            console.log("callbackUrl", callbackUrl);
+            console.log("provider", provider);
+            const redirect_uri = "http://localhost:3000/api/auth/callback/linkedin";
+            const code = router.query.code;
+            console.log("code", code);
+            if (code) {
+              router.push("/api/auth/callback/linkedin?"+code+"&state=DCEeFWf45A53sdfKef424&redirect_uri="+redirect_uri);
+              const response = await fetch("/api/auth/callback/linkedin", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: JSON.stringify({
+                  code,
+                  state: "DCEeFWf45A53sdfKef424",
+                  redirect_uri,
+                }),
+              });
+              
+              if (response) {
+                const data = await response.json();
+               return data;
+              }
+
+              //return {};
+            }
+
+            //console.log('router', router);
           }
           return {};
         } catch (error) {
+          console.log(error, "error");
           // An error boundary must exist to handle unknown errors
           return {
             error: "Something went wrong.",

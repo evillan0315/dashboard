@@ -21,16 +21,9 @@ const UserPage: React.FC = () => {
   const [formValues, setFormValues] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    if (id) {
-      fetchUser();
-    }
-  }, [id]);
-
   const fetchUser = async () => {
     try {
       const response = await axios.get(`/api/users/${id}`);
-
       setFormValues(response.data);
     } catch (error) {
       console.error("Failed to fetch user:", error);
@@ -38,6 +31,11 @@ const UserPage: React.FC = () => {
       setLoading(false);
     }
   };
+  useEffect(() => {
+      fetchUser();
+  });
+
+  
 
   const handleInputChange = (
     e:

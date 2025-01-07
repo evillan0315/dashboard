@@ -11,6 +11,8 @@ import { PageContainer } from "@toolpad/core/PageContainer";
 
 import CircularProgress from "@mui/material/CircularProgress";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import DocumentIcon from "@mui/icons-material/FileUpload";
+import PencilIcon from "@mui/icons-material/EditNote";
 import PersonIcon from "@mui/icons-material/Person";
 import { Box } from "@mui/material";
 import { AppCacheProvider } from "@mui/material-nextjs/v13-pagesRouter";
@@ -29,17 +31,22 @@ type AppPropsWithLayout = AppProps & {
 const NAVIGATION: Navigation = [
   {
     kind: "header",
-    title: "Applications",
+    title: "Navigations",
   },
   {
-    segment: "",
+    segment: "dashboard",
     title: "Dashboard",
     icon: <DashboardIcon />,
   },
   {
-    segment: "users",
-    title: "Users",
-    icon: <PersonIcon />,
+    segment: "editor",
+    title: "Markdown Editor",
+    icon: <PencilIcon />,
+  },
+  {
+    segment: "files",
+    title: "File Manager",
+    icon: <DocumentIcon />,
   },
 ];
 

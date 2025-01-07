@@ -32,11 +32,4 @@ export type Post = {
   published: boolean;
   authorId: string | null;
 }
-// Extend the User type for additional properties (optional)
-export type UserWithPosts = User & {
-  posts?: Post[];
-};
-// Extend the User type for additional properties (optional)
-export type UserWithAccount = User & {
-  accounts?: Account[];
-};
+

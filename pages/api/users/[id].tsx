@@ -1,10 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getUserById } from "../../../utils/user";
+import { getSession } from "next-auth/react";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const session = await getSession();
+  if(!session){
+    res.status(404).json({ error: "Please Login" });
+  }
   const { id } = req.query;
 
   if (req.method === "GET") {
