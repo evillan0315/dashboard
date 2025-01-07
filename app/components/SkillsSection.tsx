@@ -14,6 +14,7 @@ import {
   FaCloud,
   FaChartLine,
 } from "react-icons/fa"; // Import necessary icons
+import { Skills } from "../../types/models";
 
 // Icon map to dynamically map icon name to the correct React Icon component
 const iconMap: { [key: string]: JSX.Element } = {
@@ -33,14 +34,13 @@ const iconMap: { [key: string]: JSX.Element } = {
 
 
 interface SkillsSectionProps {
-  skills: any;
+  skills: Skills[] | null;
 }
 
 const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
   return (
-    <>
       <Stack gap={2} direction="row" overflow={"auto"}>
-        {skills.map((skill: { icon: string | number; name: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }, index: React.Key | null | undefined) => (
+        {skills?.map((skill, index) => (
           <>
             <Box width={200}>
               <Card sx={{ background: "none" }}>
@@ -72,8 +72,8 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
             </Box>
           </>
         ))}
+
       </Stack>
-    </>
   );
 };
 

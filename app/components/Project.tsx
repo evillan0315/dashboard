@@ -7,9 +7,10 @@ import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import { ArrowRight, Link } from "@mui/icons-material";
 import { Button, CardContent, Grid2, Icon } from "@mui/material";
+import { Projects } from "../../types/models";
 
 interface ProjectProps {
-  project: any;
+  project: Projects;
 }
 
 const Project: React.FC<ProjectProps> = ({ project }) => {

@@ -16,9 +16,10 @@ import {
   Grid2,
 } from "@mui/material";
 import Project from "./Project";
+import { Projects } from "../../types/models";
 
 interface ProjectsSectionProps {
-  projects: any[];
+  projects: Projects[] | null;
 }
 
 const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
@@ -34,7 +35,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
       </Typography>
 
       <Grid2 container rowSpacing={1} columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
-        {projects.map((project, index) => (
+        {projects?.map((project, index) => (
           <>
             <Project key={index} project={project} />
           </>

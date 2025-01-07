@@ -33,7 +33,7 @@ export type Post = {
   authorId: string | null;
 }
 
-export interface Project {
+export interface Projects {
   name: string;
   startDate: string;
   endDate: string;
@@ -98,11 +98,12 @@ export interface Skills {
   name: string;
   level: string;
   keywords: string[];
+  icon: string;
 }
 
 export interface Data {
   basics: Basics;
   work: Work[];
   skills: Skills[];
-  projects: Project[];
+  projects: Projects[];
 }

@@ -3,9 +3,10 @@
 import React from "react";
 import { Avatar, Box, Button, Typography } from "@mui/material";
 import ContactSection from "./ContactSection";
+import { Basics, Data } from "../../types/models";
 
 interface AvatarSectionProps {
-  basics: any;
+  basics: Basics | null;
 }
 
 const AvatarSection: React.FC<AvatarSectionProps> = ({
@@ -14,8 +15,8 @@ const AvatarSection: React.FC<AvatarSectionProps> = ({
   return (
     <Box my={4} textAlign="center">
       <Avatar
-        alt={basics.name}
-        src={basics.image}
+        alt={basics?.name}
+        src={basics?.image}
         sx={{ width: 100, height: 100, marginBottom: 2 }}
       />
       <Typography
@@ -31,9 +32,9 @@ const AvatarSection: React.FC<AvatarSectionProps> = ({
           },
         }}
       >
-        {basics.name}
+        {basics?.name}
       </Typography>
-      <ContactSection email={basics.email} phone={basics.phone} />
+      <ContactSection email={basics?.email} phone={basics?.phone} />
       <Typography
         variant="h3"
         sx={{
@@ -47,9 +48,9 @@ const AvatarSection: React.FC<AvatarSectionProps> = ({
           },
         }}
       >
-        {basics.label}
+        {basics?.label}
       </Typography>
-      <Typography variant="body1">{basics.summary}</Typography>
+      <Typography variant="body1">{basics?.summary}</Typography>
     </Box>
   );
 };
