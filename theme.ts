@@ -1,23 +1,51 @@
 "use client";
+import { Roboto,DM_Sans, Poppins, Lato} from 'next/font/google';
+import { createTheme } from '@mui/material/styles';
 
-import { createTheme } from "@mui/material";
-import red from "@mui/material/colors/red";
+import {red,blueGrey, grey, purple} from "@mui/material/colors";
 
+const primary = blueGrey[500];
 
+const secondary = blueGrey[200]; // #ff4081
+
+export const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+});
+export const dmSans = DM_Sans({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+});
+export const poppins = Poppins({
+  weight: ['400', '500', '600', '700'], // Focused weights for headings and body text
+  subsets: ['latin', 'latin-ext'], // Extended character support
+  display: 'fallback', // Faster rendering with fallback
+  preload: true, // Preload for better performance
+});
+export const lato = Lato({
+  weight: ['300', '400', '700'], // Common weights for versatile usage
+  subsets: ['latin', 'latin-ext'], // Extended character support
+  display: 'swap', // Use 'swap' to ensure text is visible during font loading
+  preload: true, // Preload for optimized performance
+});
 const theme = createTheme({
   cssVariables: {
     colorSchemeSelector: 'data-toolpad-color-scheme',
   },
   colorSchemes: { light: true, dark: true },
   palette: {
+    mode: 'light',
+  
     primary: {
-      main: '#1976d2',
+      main: primary,
       light: '#63a4ff',
       dark: '#004ba0',
       contrastText: '#fff',
     },
     secondary: {
-      main: '#dc004e',
+      main: secondary,
       light: '#ff5c8d',
       dark: '#9a0036',
       contrastText: '#fff',
@@ -35,7 +63,8 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Roboto, Arial, sans-serif',
+    fontFamily: `${poppins.style.fontFamily}, ${lato.style.fontFamily}, sans-serif`,
+    fontSize: 10,
     h1: {
       fontSize: '2.5rem',
       fontWeight: 500,
@@ -57,7 +86,7 @@ const theme = createTheme({
       lineHeight: 1.5,
     },
     body1: {
-      fontSize: '1rem',
+      fontSize: '.9rem',
       lineHeight: 1.6,
     },
     body2: {
