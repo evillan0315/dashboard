@@ -14,17 +14,10 @@ import {
 } from "@mui/material";
 import WorkIcon from "@mui/icons-material/Work";
 
-interface Work {
-  name: string;
-  position: string;
-  startDate: string;
-  endDate: string;
-  summary: string;
-  highlights: string[];
-}
+
 
 interface WorkSectionProps {
-  work: Work[];
+  work: any;
 }
 
 const WorkSection: React.FC<WorkSectionProps> = ({ work }) => {
@@ -38,7 +31,7 @@ const WorkSection: React.FC<WorkSectionProps> = ({ work }) => {
       >
         Work Experience
       </Typography>
-      {work.map((job, index) => (
+      {work.map((job: { position: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; name: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; startDate: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; endDate: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; summary: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; highlights: (string | number | bigint | boolean | React.ReactPortal | Promise<React.AwaitedReactNode> | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined)[]; }, index: React.Key | null | undefined) => (
         <Card key={index} sx={{ mb: 3, boxShadow: 3, borderRadius: 2 }}>
           <CardContent>
             <Grid container alignItems="center" spacing={2}>
@@ -73,7 +66,7 @@ const WorkSection: React.FC<WorkSectionProps> = ({ work }) => {
                     Key Highlights:
                   </Typography>
                   <Stack direction="row" spacing={1}>
-                    {job.highlights.map((highlight, idx) => (
+                    {job.highlights.map((highlight: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined, idx: any) => (
                       <>
                         <Card variant="outlined" color="cyan">
                           <CardContent sx={{ lineHeight: "-1em" }}>

@@ -3,32 +3,19 @@
 import React from "react";
 import { Avatar, Box, Button, Typography } from "@mui/material";
 import ContactSection from "./ContactSection";
-import SkillsSection from "./SkillsSection";
 
 interface AvatarSectionProps {
-  phone: string;
-  name: string;
-  image: string;
-  label: string;
-  summary: string;
-  url: string;
-  email: string;
+  basics: any;
 }
 
 const AvatarSection: React.FC<AvatarSectionProps> = ({
-  name,
-  image,
-  phone,
-  email,
-  label,
-  summary,
-  url,
+ basics
 }) => {
   return (
     <Box my={4} textAlign="center">
       <Avatar
-        alt={name}
-        src={image}
+        alt={basics.name}
+        src={basics.image}
         sx={{ width: 100, height: 100, marginBottom: 2 }}
       />
       <Typography
@@ -44,9 +31,9 @@ const AvatarSection: React.FC<AvatarSectionProps> = ({
           },
         }}
       >
-        {name}
+        {basics.name}
       </Typography>
-      <ContactSection email={email} phone={phone} />
+      <ContactSection email={basics.email} phone={basics.phone} />
       <Typography
         variant="h3"
         sx={{
@@ -60,9 +47,9 @@ const AvatarSection: React.FC<AvatarSectionProps> = ({
           },
         }}
       >
-        {label}
+        {basics.label}
       </Typography>
-      <Typography variant="body1">{summary}</Typography>
+      <Typography variant="body1">{basics.summary}</Typography>
     </Box>
   );
 };

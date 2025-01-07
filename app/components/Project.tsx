@@ -81,7 +81,7 @@ const Project: React.FC<ProjectProps> = ({ project }) => {
           </Box>
         </Stack>
 
-        <Stack direction={"row"}  gap={2}>
+        <Stack direction={"row"} gap={2}>
           <Box sx={{ p: 2 }}>
             <Typography gutterBottom variant="h5">
               Frontend

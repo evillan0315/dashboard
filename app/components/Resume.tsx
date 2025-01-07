@@ -1,27 +1,30 @@
 // pages/index.tsx
 
 import React from "react";
-import { Button, Container } from "@mui/material";
-import { resumeData } from "../../pages/data/data";
+import { Container } from "@mui/material";
 import AvatarSection from "../components/AvatarSection";
 import SkillsSection from "../components/SkillsSection";
 import WorkSection from "../components/WorkSection";
 import ProjectsSection from "./ProjectsSection";
+import resumeData from '../../data/resume.json';
+import { Data } from "../../types/models";
 
 
-const Resume = () => {
-  const { basics, work, skills, projects } = resumeData;
+interface ResumeSectionProps {
+  projects: any[];
+  skills: any[];
+  work: any[];
+  basics: any[];
+}
+
+const ResumeSection: React.FC<ResumeSectionProps> = ({ basics, work, skills, projects }) => {
+
+
 
   return (
     <Container maxWidth="md">
       <AvatarSection
-        name={basics.name}
-        image={basics.image}
-        label={basics.label}
-        summary={basics.summary}
-        url={basics.url}
-        phone={basics.phone}
-        email={basics.email}
+        basics={basics}
       />
       
       <SkillsSection skills={skills} />
@@ -32,4 +35,4 @@ const Resume = () => {
   );
 };
 
-export default Resume;
+export default ResumeSection;

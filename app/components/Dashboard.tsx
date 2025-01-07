@@ -6,8 +6,6 @@ import { Line, Bar } from "react-chartjs-2";
 
 
 export default function Dashboard() {
-  
-
   const lineChartData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [

@@ -33,3 +33,76 @@ export type Post = {
   authorId: string | null;
 }
 
+export interface Project {
+  name: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+  url: string;
+  frontend: {
+    technologies: string[];
+    features: string[];
+  };
+  backend: {
+    technologies: string[];
+    features: string[];
+  };
+  database: {
+    technologies: string[];
+    features: string[];
+  };
+  api: {
+    technologies: string[];
+    features: string[];
+  };
+  deployment: {
+    tools: string[];
+    features: string[];
+  };
+}
+
+export interface Basics {
+  name: string;
+  firstname: string;
+  middle: string;
+  lastname: string;
+  label: string;
+  image: string;
+  email: string;
+  phone: string;
+  url: string;
+  summary: string;
+  locations: {
+    city: string;
+    countryCode: string;
+    region: string;
+  }[];
+  profiles: {
+    network: string;
+    username: string;
+    url: string;
+  }[];
+  quotes: string[];
+}
+
+export interface Work {
+  name: string;
+  position: string;
+  startDate: string;
+  endDate: string;
+  summary: string;
+  highlights: string[];
+}
+
+export interface Skills {
+  name: string;
+  level: string;
+  keywords: string[];
+}
+
+export interface Data {
+  basics: Basics;
+  work: Work[];
+  skills: Skills[];
+  projects: Project[];
+}
