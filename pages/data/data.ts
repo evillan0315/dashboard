@@ -397,3 +397,4 @@ export const resumeData = {
         theme: "standard"
     }
 };
+export default resumeData;
