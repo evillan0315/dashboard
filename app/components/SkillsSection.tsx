@@ -14,7 +14,7 @@ import {
   FaCloud,
   FaChartLine,
 } from "react-icons/fa"; // Import necessary icons
-import { Skills } from "../../types/models";
+import { Skills } from "../../types/models"; // Ensure this interface is defined properly
 
 // Icon map to dynamically map icon name to the correct React Icon component
 const iconMap: { [key: string]: JSX.Element } = {
@@ -31,7 +31,10 @@ const iconMap: { [key: string]: JSX.Element } = {
   // Add more mappings for other icons here
 };
 
-
+interface SkillType {
+  name: string;
+  icon: string; // This should correspond to the key names in iconMap
+}
 
 interface SkillsSectionProps {
   skills: Skills[] | null;
@@ -39,41 +42,27 @@ interface SkillsSectionProps {
 
 const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
   return (
-      <Stack gap={2} direction="row" overflow={"auto"}>
-        {skills?.map((skill, index) => (
-          <>
-            <Box width={200}>
-              <Card sx={{ background: "none" }}>
-                <CardContent>
-                  <Box
-                    key={index}
-                    sx={{ padding: 0, borderRadius: 2, minWidth: "200px" }}
+    <Stack direction="row" gap={2} sx={{ overflowX: "auto", paddingY: 2 }}>
+      {skills?.map((skill, index) => (
+        <Box key={index} width={200}>
+          <Card sx={{ background: "none", borderRadius: 2 }}>
+            <CardContent>
+              <Box sx={{ padding: 0 }}>
+                <Box display="flex" gap={2} alignItems="center">
+                  <Box sx={{ fontSize: 40 }}>{iconMap[skill.icon]}</Box>
+                  <Typography
+                    variant="h6"
+                    sx={{ marginLeft: 1, fontSize: "1rem", flexGrow: 1 }}
                   >
-                    <Box
-                      display="flex"
-                      gap={2}
-                      alignItems={"center"}
-                      justifyItems={"left"}
-                    >
-                      <Box sx={{ fontSize: 40 }}>{iconMap[skill.icon]}</Box>
-                      {/* Dynamically render the icon based on the 'icon' field */}
-                      <Typography
-                        minWidth="120px"
-                        textAlign="left"
-                        variant="h5"
-                        sx={{ marginLeft: 1, fontSize: "1em" }}
-                      >
-                        {skill.name}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Box>
-          </>
-        ))}
-
-      </Stack>
+                    {skill.name}
+                  </Typography>
+                </Box>
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
+      ))}
+    </Stack>
   );
 };
 
