@@ -64,7 +64,7 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: `${poppins.style.fontFamily}, ${lato.style.fontFamily}, ${lato.style.fontFamily}, sans-serif`,
-    fontSize: 10,
+    fontSize: 12,
     h1: {
       fontSize: '2.5rem',
       fontWeight: 500,
