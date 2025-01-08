@@ -1,17 +1,15 @@
 import { useSession } from 'next-auth/react';
-import router from 'next/router';
 import * as React from 'react';
-import Resume from '../../app/components/Resume';
-
+import ResumeData from "../../data/resume";
+import { Data } from "../../types/models";
+import ResumeSection from '../../app/components/Resume';
 
 export default function ResumePage() {
+  const rSData = ResumeData;
   const { data: session } = useSession();
-  if (!session) {
-    router.push("/auth/signin");
-  }
   return (
-   <Resume />
+    <ResumeSection basics={rSData.basics} skills={rSData.skills} work={rSData.work} projects={rSData.projects} />
   );
 }
-
-ResumePage.requireAuth = true;
+ResumePage.getLayout = (page: React.ReactNode) => page;
+ResumePage.requireAuth = false;

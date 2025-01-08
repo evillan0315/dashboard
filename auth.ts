@@ -70,12 +70,12 @@ if (!process.env.TWITTER_CLIENT_ID) {
 if (!process.env.TWITTER_CLIENT_SECRET) {
   console.warn('Missing environment variable "TWITTER_CLIENT_SECRET"');
 }
-if (!process.env.FACEBOOK_CLIENT_ID) {
+/* if (!process.env.FACEBOOK_CLIENT_ID) {
   console.warn('Missing environment variable "FACEBOOK_CLIENT_ID"');
 }
 if (!process.env.FACEBOOK_CLIENT_SECRET) {
   console.warn('Missing environment variable "FACEBOOK_CLIENT_SECRET"');
-}
+} */
 if (!process.env.LINKEDIN_CLIENT_ID) {
   console.warn('Missing environment variable "LINKEDIN_CLIENT_ID"');
 }
@@ -92,12 +92,9 @@ export const authOptions: NextAuthConfig = {
   },
   callbacks: {
     async signIn({ account, profile }) {
-      console.log('Account:', account);
-      console.log('Profile:', profile);
       return true;
     },
     async session({ session, user }) {
-      console.log(session, 'session');
       session.user.id = user.id; // Extend session object
       return session;
     },
@@ -132,7 +129,7 @@ export const authOptions: NextAuthConfig = {
     },
   },
   debug: false,
-  logger: { debug: console.log, error: console.error, warn: console.warn },
+ // logger: { debug: console.log, error: console.error, warn: console.warn },
 };
 
 

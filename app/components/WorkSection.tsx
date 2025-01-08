@@ -48,7 +48,7 @@ const WorkSection: React.FC<WorkSectionProps> = ({ work }) => {
                   color="textSecondary"
                   sx={{ fontStyle: "italic" }}
                 >
-                  {job.startDate} - {job.endDate}
+                  {job.startDate} / {job.endDate}
                 </Typography>
               </Grid>
             </Grid>
