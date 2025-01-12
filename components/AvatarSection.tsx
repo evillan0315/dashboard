@@ -12,11 +12,6 @@ interface AvatarSectionProps {
 const AvatarSection: React.FC<AvatarSectionProps> = ({ basics }) => {
   return (
     <Box my={4} textAlign="center">
-      <Avatar
-        alt={basics?.name}
-        src={basics?.image}
-        sx={{ width: 100, height: 100, marginBottom: 2 }}
-      />
       <Typography
         variant="h1"
         sx={{
@@ -26,29 +21,34 @@ const AvatarSection: React.FC<AvatarSectionProps> = ({ basics }) => {
             md: "3rem", // Larger screens
           },
           fontWeight: {
-            xs: 800,
+            xs: 600,
           },
+          fontFamily: "DM Sans, sans-serif",
         }}
       >
         {basics?.name}
       </Typography>
-      <ContactSection email={basics?.email} phone={basics?.phone} />
+
       <Typography
         variant="h3"
         sx={{
           fontSize: {
             xs: ".8rem", // Small screens
             sm: ".9rem", // Medium screens
-            md: "1.2rem", // Larger screens
+            md: "1.6rem", // Larger screens
           },
           fontWeight: {
-            xs: 100,
+            xs: 400,
           },
+
+          marginBottom: "30px",
         }}
       >
         {basics?.label}
       </Typography>
-      <Typography variant="body1">{basics?.summary}</Typography>
+      <Typography variant="body1" marginBottom={10}>
+        {basics?.summary}
+      </Typography>
     </Box>
   );
 };

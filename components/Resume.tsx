@@ -10,6 +10,7 @@ import ProjectsSection from "./ProjectsSection";
 import { Basics, Data, Projects, Skills, Work } from "../types/models";
 
 interface ResumeSectionProps {
+  jobTech: any;
   basics: Basics;
   skills: Skills[];
   work: Work[];
@@ -20,22 +21,18 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
   skills,
   work,
   projects,
+  jobTech,
 }) => {
   console.log(skills);
   return (
-    <Box display={"-ms-flexbox"}>
-      <Container>
-        <AvatarSection basics={basics} />
-      </Container>
-      <Container>
-        <SkillsSection skills={skills} />
-      </Container>
-      <Container>
-        <WorkSection work={work} />
-      </Container>
-      <Container>
-        <ProjectsSection projects={projects} />
-      </Container>
+    <Box>
+      <AvatarSection basics={basics} />
+
+      <SkillsSection skills={skills} />
+      <div className="py-20">
+        <WorkSection work={work} jobTech={jobTech} />
+      </div>
+      <ProjectsSection projects={projects} />
     </Box>
   );
 };

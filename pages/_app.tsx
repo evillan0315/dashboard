@@ -48,11 +48,15 @@ const AUTHENTICATION = {
   signOut,
   error: "/auth/error", // Error code passed in query string as ?error=
   verifyRequest: "/auth/verify-request", // (used for check email message)
-  newUser: "/auth/new-user", // New users will be directed here on first sign in (leave the property out if not of interest)
+  newUser: "/auth/sign-up", // New users will be directed here on first sign in (leave the property out if not of interest)
 };
 
 function getDefaultLayout(page: React.ReactElement<any>) {
-  return <DashboardLayout>{page}</DashboardLayout>;
+  return (
+    <main className="flex justify-center items-center w-full h-screen">
+      <DashboardLayout>{page}</DashboardLayout>
+    </main>
+  );
 }
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
@@ -84,9 +88,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
         session={session}
         authentication={AUTHENTICATION}
       >
-      <main className="flex justify-center items-center w-full h-screen">
         {children}
-       </main>
       </AppProvider>
     </React.Fragment>
   );
@@ -109,9 +111,7 @@ export default function App(props: AppPropsWithLayout) {
 
   return (
     <AppCacheProvider {...props}>
-
-        <SessionProvider session={session}>{pageContent}</SessionProvider>
-     
+      <SessionProvider session={session}>{pageContent}</SessionProvider>
     </AppCacheProvider>
   );
 }

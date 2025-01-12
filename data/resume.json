@@ -23,10 +23,31 @@
           "network": "LinkedIn",
           "username": "evillanueva0315",
           "url": "https://linkedin.com/in/evillanueva0315"
+        },
+        {
+          "network": "Github",
+          "username": "evillan0315",
+          "url": "https://github.com/evillan0315"
+        },
+        {
+          "network": "Github",
+          "username": "edvillan15",
+          "url": "https://github.com/edvillan15"
+        },
+        {
+          "network": "Facebook",
+          "username": "evillanueva",
+          "url": "https://facebook.com/evillanueva"
         }
       ],
       "quotes": [
-        "Transforming Challenges into Opportunities with Leadership and Expertise."
+        "Transforming Challenges into Opportunities with Leadership and Expertise.",
+        "The best user experience is a collaboration between a stunning frontend and a powerful backend.",
+        "Innovation is not just creating something new; it’s about solving problems in ways people never imagined.",
+        "The best user experience is a collaboration between a stunning frontend and a powerful backend.",
+        "A well-optimized backend is the foundation of a fast and reliable frontend.",
+        "Every software project is a journey from chaos to order.",
+        "A great developer writes not only for the machine but also for the next person who will read the code."
       ]
     },
     "work": [

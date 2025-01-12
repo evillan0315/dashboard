@@ -45,9 +45,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
     <Stack direction="row" gap={2} sx={{ overflowX: "auto", paddingY: 2 }}>
       {skills?.map((skill, index) => (
         <Box key={index} width={200}>
-          <Card sx={{ background: "none", borderRadius: 2 }}>
+          <Card sx={{ borderRadius: 2 }} variant="outlined">
             <CardContent>
-              <Box sx={{ padding: 0 }}>
+              <Box sx={{}}>
                 <Box display="flex" gap={2} alignItems="center">
                   <Box sx={{ fontSize: 40 }}>{iconMap[skill.icon]}</Box>
                   <Typography
