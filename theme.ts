@@ -62,8 +62,10 @@ const theme = createTheme({
       main: red.A400,
     },
     background: {
-      default: "#f5f5f5",
-      paper: "#fff",
+      default:
+        "linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px",
+      paper:
+        "linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px",
     },
     text: {
       primary: "#333",
@@ -72,7 +74,6 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: `${dmSans.style.fontFamily}, ${caveat.style.fontFamily}, ${roboto.style.fontFamily}, sans-serif`,
-    fontSize: 12,
     h1: {
       fontSize: "2.5rem",
       fontWeight: 500,
@@ -136,7 +137,7 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: "#1976d2",
+          backgroundColor: "transparent",
           color: "#fff",
         },
       },

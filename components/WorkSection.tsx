@@ -1,5 +1,4 @@
-// components/WorkSection.tsx
-
+"use client";
 import React from "react";
 import {
   Box,
@@ -13,6 +12,7 @@ import {
   Stack,
   List,
   ListSubheader,
+  Link,
 } from "@mui/material";
 import WorkIcon from "@mui/icons-material/Work";
 import { Work } from "../types/models";
@@ -22,220 +22,105 @@ import {
   TerminalOutlined,
 } from "@mui/icons-material";
 import { FaAws, FaGit, FaNodeJs, FaPython, FaReact } from "react-icons/fa";
-
+import { CardBody, CardContainer, CardItem } from "./ui/3D-Card";
+import Image from "next/image";
 interface WorkSectionProps {
-  jobTech: any;
   work: Work[] | undefined;
 }
 
-const WorkSection: React.FC<WorkSectionProps> = ({ work, jobTech }) => {
-  console.log(jobTech, "jobTech");
+const WorkSection: React.FC<WorkSectionProps> = ({ work }) => {
   return (
-    <Grid2 spacing={{ xs: 2, md: 3 }} columns={3}>
-      {work?.map(
-        (
-          job: {
-            position:
-              | string
-              | number
-              | bigint
-              | boolean
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              | Iterable<React.ReactNode>
-              | React.ReactPortal
-              | Promise<React.AwaitedReactNode>
-              | null
-              | undefined;
-            name:
-              | string
-              | number
-              | bigint
-              | boolean
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              | Iterable<React.ReactNode>
-              | React.ReactPortal
-              | Promise<React.AwaitedReactNode>
-              | null
-              | undefined;
-            startDate:
-              | string
-              | number
-              | bigint
-              | boolean
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              | Iterable<React.ReactNode>
-              | React.ReactPortal
-              | Promise<React.AwaitedReactNode>
-              | null
-              | undefined;
-            endDate:
-              | string
-              | number
-              | bigint
-              | boolean
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              | Iterable<React.ReactNode>
-              | React.ReactPortal
-              | Promise<React.AwaitedReactNode>
-              | null
-              | undefined;
-            summary:
-              | string
-              | number
-              | bigint
-              | boolean
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              | Iterable<React.ReactNode>
-              | React.ReactPortal
-              | Promise<React.AwaitedReactNode>
-              | null
-              | undefined;
-            highlights: (
-              | string
-              | number
-              | bigint
-              | boolean
-              | React.ReactPortal
-              | Promise<React.AwaitedReactNode>
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              | Iterable<React.ReactNode>
-              | null
-              | undefined
-            )[];
-          },
-          index: React.Key | null | undefined
-        ) => (
-          <>
-            <Stack
-              marginBottom={"60px"}
-              direction={"row"}
-              gap={6}
-              sx={{ marginTop: "2em", paddingBottom: "2em" }}
-            >
-              {/*                     <Grid2 alignItems="left" flex={1}>
-                      <WorkIcon sx={{ fontSize: 40, color: "primary.main" }} />
-                    </Grid2> */}
-              <Box flex={5}>
+    <Grid container spacing={2}>
+      {work?.map((job, index) => (
+        <Grid item key={index} alignItems={"center"} xs={12} md={6}>
+          <CardContainer className="inter-var mb-10">
+            <CardBody className="bg-gray-50 relative group/card  shadow-lg dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-transparent dark:border-white/[0.2] border-black/[0.1] w-full sm:w-[30rem] h-auto rounded-xl md:px-10 md:py-8 border">
+              <CardItem
+                translateZ="50"
+                className="text-xl font-bold text-neutral-600 dark:text-white"
+              >
                 <Typography
-                  variant={"h4"}
+                  variant={"h5"}
                   sx={{ fontWeight: "200", marginTop: "5px" }}
                 >
                   {job.position}
                 </Typography>
+              </CardItem>
+              <CardItem
+                as="p"
+                translateZ="60"
+                className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+              >
                 <Stack direction={"row"} gap={2}>
-                  <Typography variant="caption" sx={{ fontWeight: "200" }}>
+                  <Typography variant="body1" sx={{ fontWeight: "200" }}>
                     {job.name}
                   </Typography>
                   <Typography
-                    variant="caption"
+                    variant="body1"
                     textAlign={"right"}
                     sx={{ fontWeight: "200" }}
                   >
                     {job.startDate} / {job.endDate}
                   </Typography>
                 </Stack>
-                <Typography sx={{ marginTop: "2em", fontSize: "1em" }}>
-                  {job.summary}
-                </Typography>
-                <Typography variant="h3">
-                  <Stack direction={"row"} gap={4} marginTop={4}>
-                    <FaPython size={40} />
-                    <FaReact size={40} />
-                    <FaNodeJs size={40} />
-                    <FaAws size={40} />
-                    <FaGit size={40} />
-                  </Stack>
-
-                  {Object.keys(jobTech).map((key) =>
-                    key === job.name ? (
-                      <span key={key}>{jobTech[key].join(",")} </span>
-                    ) : null
-                  )}
-                </Typography>
-              </Box>
-
-              <Box flex={7} sx={{}}>
+              </CardItem>
+              <CardItem translateZ="100" className="w-full mt-4">
+                <Image
+                  src="https://images.unsplash.com/photo-1516101922849-2bf0be616449?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  height="1000"
+                  width="1000"
+                  className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                  alt="thumbnail"
+                />
+              </CardItem>
+              <CardItem
+                translateZ="100"
+                className="py-1 no-underline rounded-xl text-xs font-normal dark:text-white"
+              >
                 <List
-                  className="bg-zinc-950 pt-6 px-4 shadow-lg shadow-zinc-800 rounded-lg"
+                  className="pt-4"
                   sx={{
                     width: "100%",
-                    minHeight: "260px",
+
                     borderBlockColor: "ActiveBorder",
                   }}
-                  subheader={
-                    <ListSubheader className="bg-transparent">
-                      <Typography
-                        marginBottom={2}
-                        variant="h5"
-                        sx={{ fontWeight: "100" }}
-                      >
-                        Key Highlights:
-                      </Typography>
-                    </ListSubheader>
-                  }
+                  subheader={undefined}
                 >
-                  <div className="px-5 pb-5">
+                  <div className="pb-1">
                     {job.highlights.length > 0 && (
                       <Box>
-                        {job.highlights.map(
-                          (
-                            highlight:
-                              | string
-                              | number
-                              | bigint
-                              | boolean
-                              | React.ReactElement<
-                                  any,
-                                  string | React.JSXElementConstructor<any>
-                                >
-                              | Iterable<React.ReactNode>
-                              | React.ReactPortal
-                              | Promise<React.AwaitedReactNode>
-                              | null
-                              | undefined,
-                            idx: any
-                          ) => (
-                            <>
-                              <Box key={idx} flex={2}>
-                                <Typography
-                                  className="pb-3"
-                                  variant="body1"
-                                  sx={{ fontSize: "1em" }}
-                                >
-                                  {highlight}
-                                </Typography>
-                              </Box>
-                            </>
-                          )
-                        )}
+                        {job.highlights.map((highlight, idx) => (
+                          <Box key={idx} marginBottom={1}>
+                            <Typography variant="body1">{highlight}</Typography>
+                          </Box>
+                        ))}
                       </Box>
                     )}
                   </div>
                 </List>
-              </Box>
-            </Stack>
-          </>
-        )
-      )}
-    </Grid2>
+              </CardItem>
+              <CardItem
+                translateZ={80}
+                className="px-4  text-white text-xs font-bold"
+              >
+                <Stack
+                  direction={"row"}
+                  alignItems={"center"}
+                  justifyItems={"center"}
+                  gap={4}
+                >
+                  <FaPython size={30} />
+                  <FaReact size={30} />
+                  <FaNodeJs size={30} />
+                  <FaAws size={30} />
+                  <FaGit size={30} />
+                </Stack>
+              </CardItem>
+            </CardBody>
+          </CardContainer>
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

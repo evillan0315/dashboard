@@ -22,6 +22,7 @@
     "@mui/x-data-grid": "^7.23.5",
     "@neondatabase/serverless": "^0.10.4",
     "@prisma/client": "^6.2.1",
+    "@tabler/icons-react": "^3.28.1",
     "@toolpad/core": "^0.11.0",
     "axios": "^1.7.9",
     "bcrypt": "^5.1.1",

@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Box, Container } from "@mui/material";
-import AvatarSection from "./AvatarSection";
 import SkillsSection from "./SkillsSection";
 import WorkSection from "./WorkSection";
 import ProjectsSection from "./ProjectsSection";
@@ -10,7 +9,6 @@ import ProjectsSection from "./ProjectsSection";
 import { Basics, Data, Projects, Skills, Work } from "../types/models";
 
 interface ResumeSectionProps {
-  jobTech: any;
   basics: Basics;
   skills: Skills[];
   work: Work[];
@@ -21,18 +19,16 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
   skills,
   work,
   projects,
-  jobTech,
 }) => {
-  console.log(skills);
   return (
     <Box>
-      <AvatarSection basics={basics} />
-
       <SkillsSection skills={skills} />
-      <div className="py-20">
-        <WorkSection work={work} jobTech={jobTech} />
-      </div>
-      <ProjectsSection projects={projects} />
+      <Container className="py-10">
+        <WorkSection work={work} />
+      </Container>
+      <Container className="py-20">
+        <ProjectsSection projects={projects} />
+      </Container>
     </Box>
   );
 };

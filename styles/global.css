@@ -6,3 +6,10 @@ body{
     font-weight: 400;
     font-family: "DM Sans, Geneva, Tahoma, sans-serif";
 }
+
+.grid-background {
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px; /* Adjust grid size */
+  }

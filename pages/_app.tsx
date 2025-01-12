@@ -12,6 +12,7 @@ import type { AppProps } from "next/app";
 import type { Navigation } from "@toolpad/core/AppProvider";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 import LinearProgress from "@mui/material/LinearProgress";
+import { createTheme } from "@mui/material";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: React.ReactElement<any>) => React.ReactNode;
@@ -53,7 +54,7 @@ const AUTHENTICATION = {
 
 function getDefaultLayout(page: React.ReactElement<any>) {
   return (
-    <main className="flex justify-center items-center w-full h-screen">
+    <main className="">
       <DashboardLayout>{page}</DashboardLayout>
     </main>
   );
@@ -88,7 +89,9 @@ function AppLayout({ children }: { children: React.ReactNode }) {
         session={session}
         authentication={AUTHENTICATION}
       >
-        {children}
+        <div className="relative h-screen w-full grid-background bg-zinc-950 overflow-scroll">
+          {children}
+        </div>
       </AppProvider>
     </React.Fragment>
   );

@@ -1,4 +1,4 @@
-export type User  = {
+export type User = {
   id: string;
   name: string | null;
   email: string;
@@ -10,7 +10,7 @@ export type User  = {
   phone_number?: string | null;
   address?: string | null;
   gender?: string | null;
-}
+};
 
 export type Account = {
   id: number;
@@ -24,14 +24,14 @@ export type Account = {
   scope: string | null;
   id_token: string | null;
   session_state: string | null;
-}
+};
 export type Post = {
   id: number;
   title: string;
   content: string | null;
   published: boolean;
   authorId: string | null;
-}
+};
 
 export interface Projects {
   name: string;
@@ -82,6 +82,7 @@ export interface Basics {
     username: string;
     url: string;
   }[];
+  subheading: string;
   quotes: string[];
 }
 

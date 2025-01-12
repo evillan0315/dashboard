@@ -9,7 +9,98 @@ export const JobTech = {
   Freelance: ["Kubernetes", "NodeJS", "React", "Python"],
   Welligent: ["Angular", "NodeJS", "Codova", "Linux"],
 };
-
+export const heroText = [
+  {
+    header: "Creative and resourceful Frontend Developer",
+    subheader:
+      "Specialized in crafting dynamic user interfaces using React, Angular, and Tailwind CSS",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3",
+    link: "#",
+    buttonLink: "#",
+  },
+  {
+    header:
+      "Dedicated Backend Developer with a knack for performance optimization",
+    subheader:
+      "Experienced in Node.js, Django, and SQL for building efficient server-side applications",
+    image:
+      "https://images.unsplash.com/photo-1508385082359-f23dff8379be?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3",
+    link: "#",
+    buttonLink: "#",
+  },
+  {
+    header: "Versatile Full Stack Developer",
+    subheader:
+      "Adept at integrating React, Flask, and PostgreSQL for end-to-end application development",
+    image:
+      "https://images.unsplash.com/photo-1531497865147-a369e6d4d3a6?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3",
+    link: "#",
+    buttonLink: "#",
+  },
+  {
+    header: "Cloud-savvy Software Engineer",
+    subheader:
+      "Skilled in deploying scalable applications on AWS, Azure, and Google Cloud",
+    image:
+      "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3",
+    link: "#",
+    buttonLink: "#",
+  },
+  {
+    header: "UI/UX Designer passionate about user-centric design",
+    subheader:
+      "Expertise in Figma, Sketch, and Adobe XD to create intuitive and engaging user experiences",
+    image:
+      "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3",
+    link: "#",
+    buttonLink: "#",
+  },
+  {
+    header: "Security-focused DevOps Engineer",
+    subheader:
+      "Proficient in CI/CD pipelines, Kubernetes, and securing cloud infrastructures",
+    image:
+      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3",
+    link: "#",
+    buttonLink: "#",
+  },
+  {
+    header: "AI and Machine Learning Specialist",
+    subheader:
+      "Experienced in TensorFlow, PyTorch, and creating intelligent models for real-world applications",
+    image:
+      "https://images.unsplash.com/photo-1581091012184-09a868ebd7b4?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3",
+    link: "#",
+    buttonLink: "#",
+  },
+  {
+    header: "Mobile App Developer with a passion for innovation",
+    subheader:
+      "Building cross-platform applications using Flutter, React Native, and Swift",
+    image:
+      "https://images.unsplash.com/photo-1581291519195-ef11498d1cfb?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3",
+    link: "#",
+    buttonLink: "#",
+  },
+  {
+    header: "Data Engineer transforming raw data into valuable insights",
+    subheader: "Expert in ETL pipelines, Apache Spark, and big data solutions",
+    image:
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3",
+    link: "#",
+    buttonLink: "#",
+  },
+  {
+    header: "Passionate Game Developer",
+    subheader:
+      "Creating immersive gaming experiences using Unity, Unreal Engine, and C#",
+    image:
+      "https://images.unsplash.com/photo-1517430816045-df4b7de18d9d?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3",
+    link: "#",
+    buttonLink: "#",
+  },
+];
 // Example ResumeData (ensure this is correctly imported and follows the Data structure)
 const ResumeData: Data = {
   basics: {
@@ -39,7 +130,10 @@ const ResumeData: Data = {
         url: "https://linkedin.com/in/evillanueva0315",
       },
     ],
+    subheading:
+      "My name is Eddie, I am passionate about crafting seamless user experiences, clean code, and scalable applications.",
     quotes: [
+      "Building Innovative Solutions, One Line of Code at a Time",
       "Transforming Challenges into Opportunities with Leadership and Expertise.",
     ],
   },
