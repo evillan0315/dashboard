@@ -1,100 +1,108 @@
+"use client";
+import { Roboto, DM_Sans, Lato, Caveat, Oswald } from "next/font/google";
+import { createTheme } from "@mui/material/styles";
 
-import { Roboto,DM_Sans, Poppins, Lato} from 'next/font/google';
-import { createTheme } from '@mui/material/styles';
-
-import {red,blueGrey, grey, purple} from "@mui/material/colors";
+import { red, blueGrey, grey, purple } from "@mui/material/colors";
 
 const primary = blueGrey[500];
 
 const secondary = blueGrey[200]; // #ff4081
 
 export const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display: 'swap',
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+  display: "swap",
 });
 export const dmSans = DM_Sans({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display: 'swap',
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+  display: "swap",
 });
-export const poppins = Poppins({
-  weight: ['400', '500', '600', '700'], // Focused weights for headings and body text
-  subsets: ['latin', 'latin-ext'], // Extended character support
-  display: 'fallback', // Faster rendering with fallback
-  preload: true, // Preload for better performance
-});
+
 export const lato = Lato({
-  weight: ['300', '400', '700'], // Common weights for versatile usage
-  subsets: ['latin', 'latin-ext'], // Extended character support
-  display: 'swap', // Use 'swap' to ensure text is visible during font loading
+  weight: ["300", "400", "700"], // Common weights for versatile usage
+  subsets: ["latin", "latin-ext"], // Extended character support
+  display: "swap", // Use 'swap' to ensure text is visible during font loading
   preload: true, // Preload for optimized performance
 });
+export const oswald = Oswald({
+  weight: ["200", "300", "400", "500", "600", "700"], // Common weights for versatile usage
+  subsets: ["latin", "latin-ext"], // Extended character support
+  display: "swap", // Use 'swap' to ensure text is visible during font loading
+  preload: true, // Preload for optimized performance
+});
+export const caveat = Caveat({
+  weight: ["400", "500", "600", "700"], // Common weights for versatile usage
+  subsets: ["latin", "latin-ext"], // Extended character support
+  display: "swap", // Use 'swap' to ensure text is visible during font loading
+  preload: true, // Preload for optimized performance
+});
+
 const theme = createTheme({
   cssVariables: {
-    colorSchemeSelector: 'data-toolpad-color-scheme',
+    colorSchemeSelector: "data-toolpad-color-scheme",
   },
   colorSchemes: { light: true, dark: true },
   palette: {
-    mode: 'light',
-  
+    mode: "light",
+
     primary: {
       main: primary,
-      light: '#63a4ff',
-      dark: '#004ba0',
-      contrastText: '#fff',
+      light: "#63a4ff",
+      dark: "#004ba0",
+      contrastText: "#fff",
     },
     secondary: {
       main: secondary,
-      light: '#ff5c8d',
-      dark: '#9a0036',
-      contrastText: '#fff',
+      light: "#ff5c8d",
+      dark: "#9a0036",
+      contrastText: "#fff",
     },
     error: {
       main: red.A400,
     },
     background: {
-      default: '#f5f5f5',
-      paper: '#fff',
+      default: "#f5f5f5",
+      paper: "#fff",
     },
     text: {
-      primary: '#333',
-      secondary: '#666',
+      primary: "#333",
+      secondary: "#666",
     },
   },
   typography: {
-    fontFamily: `${poppins.style.fontFamily}, ${lato.style.fontFamily}, ${lato.style.fontFamily}, sans-serif`,
+    fontFamily: `${dmSans.style.fontFamily}, ${caveat.style.fontFamily}, ${roboto.style.fontFamily}, sans-serif`,
     fontSize: 12,
     h1: {
-      fontSize: '2.5rem',
+      fontSize: "2.5rem",
       fontWeight: 500,
       lineHeight: 1.2,
     },
     h2: {
-      fontSize: '2rem',
+      fontSize: "2rem",
       fontWeight: 500,
       lineHeight: 1.3,
     },
     h3: {
-      fontSize: '1.75rem',
+      fontSize: "1.75rem",
       fontWeight: 500,
       lineHeight: 1.4,
     },
     h4: {
-      fontSize: '1.5rem',
+      fontSize: "1.5rem",
       fontWeight: 500,
       lineHeight: 1.5,
     },
     body1: {
-      fontSize: '.9rem',
+      fontSize: ".9rem",
       lineHeight: 1.6,
     },
     body2: {
-      fontSize: '0.875rem',
+      fontSize: "0.875rem",
       lineHeight: 1.6,
     },
     button: {
-      textTransform: 'none',
+      textTransform: "none",
     },
   },
   spacing: 8, // Default spacing unit is 8px
@@ -111,16 +119,16 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '8px',
-          padding: '8px 16px',
-          marginRight: '8px', 
-          marginBottom: '8px', 
+          borderRadius: "8px",
+          padding: "8px 16px",
+          marginRight: "8px",
+          marginBottom: "8px",
         },
         containedPrimary: {
-          backgroundColor: '#1976d2',
-          color: '#fff',
-          '&:hover': {
-            backgroundColor: '#1565c0',
+          backgroundColor: "#1976d2",
+          color: "#fff",
+          "&:hover": {
+            backgroundColor: "#1565c0",
           },
         },
       },
@@ -128,29 +136,27 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: '#1976d2',
-          color: '#fff',
+          backgroundColor: "#1976d2",
+          color: "#fff",
         },
       },
     },
     MuiTypography: {
       styleOverrides: {
-        root: {
-          
-        },
+        root: {},
       },
     },
     MuiTextField: {
       styleOverrides: {
         root: {
-          marginBottom: '16px', // Add global margin bottom for all TextField components
+          marginBottom: "16px", // Add global margin bottom for all TextField components
         },
       },
     },
     MuiFormControl: {
       styleOverrides: {
         root: {
-          marginBottom: '16px', // Add global margin bottom for all FormControl components
+          marginBottom: "16px", // Add global margin bottom for all FormControl components
         },
       },
     },

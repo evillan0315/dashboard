@@ -14,7 +14,7 @@ import {
   FaCloud,
   FaChartLine,
 } from "react-icons/fa"; // Import necessary icons
-import { Skills } from "../../types/models"; // Ensure this interface is defined properly
+import { Skills } from "../types/models"; // Ensure this interface is defined properly
 
 // Icon map to dynamically map icon name to the correct React Icon component
 const iconMap: { [key: string]: JSX.Element } = {

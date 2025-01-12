@@ -3,10 +3,24 @@ import type {
   GetServerSidePropsContext,
   InferGetServerSidePropsType,
 } from "next";
-import { SignInPage } from "@toolpad/core/SignInPage";
-import { signIn } from "next-auth/react";
+import Link from "@mui/material/Link";
+import { SignInPage, type AuthProvider } from "@toolpad/core/SignInPage";
+import { getProviders, signIn } from "next-auth/react";
+import { getServerSession } from "next-auth/next";
 import { useRouter } from "next/router";
-import { auth, providerMap } from "../../auth";
+import { authOptions } from "../api/auth/[...nextauth]";
+
+function ForgotPasswordLink() {
+  return (
+    <Link href="/auth/forgot-password" fontSize={14}>
+      Forgot password?
+    </Link>
+  );
+}
+
+function SignUpLink() {
+  return <Link href="/auth/signup">Sign up</Link>;
+}
 
 export default function SignIn({
   providers,
@@ -37,49 +51,15 @@ export default function SignIn({
               type: signInResponse.error,
             };
           }
-
           // If the sign in was successful,
           // manually redirect to the callback URL
           // since the `redirect: false` option was used
           // to be able to display error messages on the same page without a full page reload
           if (provider.id === "credentials") {
-            router.push(callbackUrl ?? "/auth/signin");
-          }
-          if (provider.id === "linkedin") {
-            console.log("formData", formData);
-            console.log("signInResponse", signInResponse);
-            console.log("callbackUrl", callbackUrl);
-            console.log("provider", provider);
-            const redirect_uri = "http://localhost:3000/api/auth/callback/linkedin";
-            const code = router.query.code;
-            /* console.log("code", code);
-            if (code) {
-              router.push("/api/auth/callback/linkedin?"+code+"&state=DCEeFWf45A53sdfKef424&redirect_uri="+redirect_uri);
-              const response = await fetch("/api/auth/callback/linkedin", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/x-www-form-urlencoded",
-                },
-                body: JSON.stringify({
-                  code,
-                  state: "DCEeFWf45A53sdfKef424",
-                  redirect_uri,
-                }),
-              });
-              
-              if (response) {
-                const data = await response.json();
-               return data;
-              }
-
-              //return {};
-            } */
-
-            //console.log('router', router);
+            router.push(callbackUrl ?? "/");
           }
           return {};
         } catch (error) {
-          console.log(error, "error");
           // An error boundary must exist to handle unknown errors
           return {
             error: "Something went wrong.",
@@ -87,6 +67,7 @@ export default function SignIn({
           };
         }
       }}
+      slots={{ forgotPasswordLink: ForgotPasswordLink, signUpLink: SignUpLink }}
     />
   );
 }
@@ -96,13 +77,21 @@ SignIn.getLayout = (page: React.ReactNode) => page;
 SignIn.requireAuth = false;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const session = await auth(context);
+  const session = await getServerSession(context.req, context.res, authOptions);
 
   // If the user is already logged in, redirect.
   // Note: Make sure not to redirect to the same page
   // To avoid an infinite loop!
   if (session) {
     return { redirect: { destination: "/" } };
+  }
+
+  const providers = await getProviders();
+  let providerMap: AuthProvider[] = [];
+  if (providers) {
+    providerMap = Object.entries(providers).map(([id, provider]) => {
+      return { id, name: provider.name };
+    });
   }
 
   return {

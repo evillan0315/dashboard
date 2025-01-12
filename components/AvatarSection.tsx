@@ -3,15 +3,13 @@
 import React from "react";
 import { Avatar, Box, Button, Typography } from "@mui/material";
 import ContactSection from "./ContactSection";
-import { Basics, Data } from "../../types/models";
+import { Basics, Data } from "../types/models";
 
 interface AvatarSectionProps {
   basics: Basics | null;
 }
 
-const AvatarSection: React.FC<AvatarSectionProps> = ({
- basics
-}) => {
+const AvatarSection: React.FC<AvatarSectionProps> = ({ basics }) => {
   return (
     <Box my={4} textAlign="center">
       <Avatar

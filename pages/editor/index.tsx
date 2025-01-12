@@ -1,7 +1,6 @@
 // Adjust the path as necessary
 import * as React from "react";
-import MarkdownEditor from "../../app/components/MarkdownEditor";
-
+import MarkdownEditor from "../../components/MarkdownEditor";
 
 export default function MarkdownPage() {
   return (
@@ -10,7 +9,7 @@ export default function MarkdownPage() {
       <MarkdownEditor />
     </div>
   );
-};
+}
 
 //MarkdownPage.getLayout = (page: React.ReactNode) => page;
 MarkdownPage.requireAuth = false;

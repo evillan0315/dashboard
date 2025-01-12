@@ -7,7 +7,7 @@ import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import { ArrowRight, Link } from "@mui/icons-material";
 import { Button, CardContent, Grid2, Icon } from "@mui/material";
-import { Projects } from "../../types/models";
+import { Projects } from "../types/models";
 
 interface ProjectProps {
   project: Projects;
@@ -62,20 +62,18 @@ const Project: React.FC<ProjectProps> = ({ project }) => {
                     | undefined,
                   idx: React.Key | null | undefined
                 ) => (
-                  <>
-                    <Card variant="elevation">
-                      <CardContent>
-                        <Typography
-                          key={idx}
-                          variant="body2"
-                          lineHeight="1.3em"
-                          fontSize={12}
-                        >
-                          {feature}
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </>
+                  <Card key={idx} variant="elevation">
+                    <CardContent>
+                      <Typography
+                        key={idx}
+                        variant="body2"
+                        lineHeight="1.3em"
+                        fontSize={12}
+                      >
+                        {feature}
+                      </Typography>
+                    </CardContent>
+                  </Card>
                 )
               )}
             </Stack>

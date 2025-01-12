@@ -1,7 +1,6 @@
-// Adjust the path as necessary
+"use client";
 import * as React from "react";
-import MarkdownEditor from "../../app/components/MarkdownEditor";
-
+import MarkdownEditor from "../../components/MarkdownEditor";
 
 export default function FilesManagerPage() {
   return (
@@ -10,7 +9,4 @@ export default function FilesManagerPage() {
       <MarkdownEditor />
     </div>
   );
-};
-
-//FilesManagerPage.getLayout = (page: React.ReactNode) => page;
-FilesManagerPage.requireAuth = false;
+}

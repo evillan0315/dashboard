@@ -1,22 +1,21 @@
-'use client'
-import Typography from '@mui/material/Typography';
-import * as React from 'react';
-import Dashboard from '../../app/components/Dashboard';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
-
+"use client";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
+import Dashboard from "../../components/Dashboard";
+import { useSession } from "next-auth/react";
 
 export default function DashboardPage() {
-  const { data: session } = useSession();
-  const router = useRouter();
-  if (!session) {
-    router.push("/auth/signin");
+  const { status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      <Typography>Welcome </Typography>;
+    },
+  });
+
+  if (status === "loading") {
+    return <Typography>Please Login </Typography>;
   }
-  return (
-    
-    <Dashboard />
-  );
+  return <Dashboard />;
 }
-//DashboardPage.getLayout = (page: React.ReactElement) => <DashboardLayout>{page}</DashboardLayout>;
-    
+
 DashboardPage.requireAuth = true;

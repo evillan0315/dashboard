@@ -1,26 +1,25 @@
-
+"use client";
 import * as React from "react";
 import { Button, Container, Typography, Grid, Paper } from "@mui/material";
-import { useSession } from "next-auth/react";
-import { GetServerSidePropsContext } from "next";
-import { auth, providerMap } from "../auth";
-import Link from "next/link";
-import Dashboard from "../app/components/Dashboard";
-import ResumePage from "./resume";
-import Resume from "./resume";
-import ResumeSection from "../app/components/Resume";
+import ResumeSection from "../components/Resume";
 import ResumeData from "../data/resume";
-import { Data } from "../types/models";
-
+import HomepageNav from "../components/HomepageNav";
+import Footer from "../components/Footer";
 
 export default function HomePage() {
-const rSData = ResumeData;
-  const { data: session } = useSession();
+  const rSData = ResumeData;
   return (
-    <ResumeSection basics={rSData.basics} skills={rSData.skills} work={rSData.work} projects={rSData.projects} />
+    <main>
+      <HomepageNav />
+      <ResumeSection
+        basics={rSData.basics}
+        skills={rSData.skills}
+        work={rSData.work}
+        projects={rSData.projects}
+      />
+      <Footer />
+    </main>
   );
 }
 HomePage.getLayout = (page: React.ReactNode) => page;
 HomePage.requireAuth = false;
-
-
