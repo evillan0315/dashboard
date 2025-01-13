@@ -45,6 +45,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           xs: 6,
           sm: 12,
         },
+        px: {
+          xs: 1,
+          sm: 2,
+        },
       }}
     >
       <Grid2
@@ -64,7 +68,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         }}
       >
         <Grid2
-          size={Component ? 6 : undefined}
+          size={{
+            xs: 12,
+            sm: Component ? 6 : undefined,
+          }}
           sx={{
             width: {
               xs: Component ? undefined : "100%", // Full width for small screens
@@ -77,13 +84,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             component="h1"
             gutterBottom
             sx={{
-              fontWeight: "bold",
+              fontWeight: {
+                xs: "200",
+                sm: "bold",
+              },
               lineHeight: 1.2,
               flexGrow: 1,
               p: 2,
               fontSize: {
-                xs: Component ? "2em" : "2.6em", // For small screens
-                sm: Component ? "3em" : "3.6em", // For medim screens and above
+                xs: Component ? "2em" : "2.5em",
+                sm: Component ? "2em" : "3em", // For medim screens and above
+                md: Component ? "3em" : "4em",
               },
             }}
           >
@@ -139,7 +150,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
         {Component && (
           <Grid2
-            size={6}
+            size={{
+              xs: 12,
+              sm: 6,
+            }}
             sx={{
               width: {
                 //xs: "100%", // Full width for small screens

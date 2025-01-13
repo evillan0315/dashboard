@@ -30,6 +30,10 @@ import WorkSection from "../components/WorkSection";
 import ProjectsSection from "../components/ProjectsSection";
 import { CodeBlock } from "../components/ui/CodeBlock";
 import language from "react-syntax-highlighter/dist/esm/languages/hljs/1c";
+import { CardBody, CardContainer, CardItem } from "../components/ui/3D-Card";
+import Image from "next/image";
+import { FaAws, FaGit, FaNodeJs, FaPython, FaReact } from "react-icons/fa";
+
 const Skeleton = styled("div")<{ height: number }>(({ theme, height }) => ({
   backgroundColor: theme.palette.action.hover,
   borderRadius: theme.shape.borderRadius,
@@ -93,6 +97,65 @@ export default function HomePage() {
     language: "typescript",
     filename: "",
   };
+  const Card3D = () => {
+    return (
+      <>
+        <CardContainer className="inter-var">
+          <CardBody className="bg-gray-50 relative group/card  shadow-lg dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-zinc-950 dark:border-white/[0.2] border-black/[0.1] w-full sm:w-[30rem] h-auto rounded-xl md:px-10 md:py-8 border text-center">
+            <CardItem
+              translateZ="50"
+              className="text-xl font-bold text-neutral-600 dark:text-white"
+            >
+              <Typography
+                variant={"h5"}
+                sx={{ fontWeight: "200", marginTop: "5px" }}
+              >
+                {hText[2].header}
+              </Typography>
+            </CardItem>
+
+            <CardItem translateZ="100" className="w-full py-6">
+              <Image
+                src={
+                  "https://images.unsplash.com/photo-1516101922849-2bf0be616449?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                }
+                height="1920"
+                width="1080"
+                className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                alt="thumbnail"
+              />
+            </CardItem>
+            <CardItem
+              as="p"
+              translateZ="60"
+              className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+            >
+              <Typography variant="body1" sx={{ fontWeight: "200" }}>
+                {hText[2].subheader}
+              </Typography>
+            </CardItem>
+            <CardItem
+              translateZ={80}
+              className="p-4  text-white text-xs font-bold"
+            >
+              <Stack
+                direction={"row"}
+                alignItems={"center"}
+                justifyContent={"center"}
+                gap={5}
+              >
+                <FaPython size={40} />
+                <FaReact size={40} />
+                <FaNodeJs size={40} />
+                <FaAws size={40} />
+                <FaGit size={40} />
+              </Stack>
+            </CardItem>
+          </CardBody>
+        </CardContainer>
+      </>
+    );
+  };
   const HeroCode = () => {
     return (
       <CodeBlock
@@ -115,8 +178,8 @@ export default function HomePage() {
           <HeroSection
             title={rSData.basics.quotes[0]}
             subtitle={rSData.basics.subheading}
-            projectLink={"http://www"}
-            contactLink={"http://ww"}
+            projectLink={"#"}
+            contactLink={"#"}
           />
 
           <SkillsSection skills={rSData.skills} />
@@ -125,8 +188,16 @@ export default function HomePage() {
             <HeroSection
               title={hText[0].header}
               subtitle={hText[0].subheader}
-              Component={HeroCode}
+              Component={Card3D}
               reverse={true}
+            />
+          </Box>
+          <Box>
+            <HeroSection
+              title={hText[3].header}
+              subtitle={hText[3].subheader}
+              projectLink={"#"}
+              contactLink={"#"}
             />
           </Box>
           <Box>
@@ -134,16 +205,16 @@ export default function HomePage() {
               title={hText[1].header}
               subtitle={hText[1].subheader}
               Component={HeroCode}
-              projectLink={"http://www"}
-              contactLink={"http://ww"}
+              projectLink={"#"}
+              contactLink={"#"}
             />
           </Box>
-          <Container className="">
+          {/*           <Container className="">
             <WorkSection work={rSData.work} />
-          </Container>
-          <Container className="lg:pt-8 md:pt-6 sm:pt-4">
+          </Container> */}
+          {/*           <Container className="lg:pt-8 md:pt-6 sm:pt-4">
             <ProjectsSection projects={rSData.projects} />
-          </Container>
+          </Container> */}
           <Footer />
         </PageContainer>
       </div>
