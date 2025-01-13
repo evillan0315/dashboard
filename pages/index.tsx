@@ -29,6 +29,7 @@ import SkillsSection from "../components/SkillsSection";
 import WorkSection from "../components/WorkSection";
 import ProjectsSection from "../components/ProjectsSection";
 import { CodeBlock } from "../components/ui/CodeBlock";
+import language from "react-syntax-highlighter/dist/esm/languages/hljs/1c";
 const Skeleton = styled("div")<{ height: number }>(({ theme, height }) => ({
   backgroundColor: theme.palette.action.hover,
   borderRadius: theme.shape.borderRadius,
@@ -67,7 +68,8 @@ function CustomPageHeader() {
 export default function HomePage() {
   const hText = heroText;
   const rSData = ResumeData;
-  const code = `function AppLayout({ children }: { children: React.ReactNode }) {
+  const codeB = {
+    code: `function AppLayout({ children }: { children: React.ReactNode }) {
   const { data: session } = useSession();
   return (
     <React.Fragment>
@@ -87,8 +89,19 @@ export default function HomePage() {
       </AppProvider>
     </React.Fragment>
   );
-}
-`;
+}` as string,
+    language: "typescript",
+    filename: "",
+  };
+  const HeroCode = () => {
+    return (
+      <CodeBlock
+        language={codeB.language}
+        filename={codeB.filename}
+        code={codeB.code as string}
+      />
+    );
+  };
   return (
     <>
       <div className="relative h-screen">
@@ -107,53 +120,28 @@ export default function HomePage() {
           />
 
           <SkillsSection skills={rSData.skills} />
-          <Divider className="py-12" />
-          <Grid2
-            container
-            spacing={4}
-            direction={"row-reverse"}
-            justifyContent={"center"}
-            alignItems={"center"}
-          >
-            <Grid2 size={6}>
-              <Typography
-                className="dark:text-white light:text-black"
-                variant="h2"
-                sx={{ fontWeight: "bold" }}
-              >
-                {hText[0].header}
-              </Typography>
-              <Typography
-                className="dark:text-white light:text-black"
-                variant="h4"
-              >
-                {hText[0].subheader}
-              </Typography>
-            </Grid2>
-            <Grid2 size={6}>
-              <Box px={4}>
-                <CodeBlock
-                  language="typescript"
-                  filename="execute.ts"
-                  code={code}
-                />
-              </Box>
-            </Grid2>
-          </Grid2>
-          <Divider className="mt-10" />
 
-          <HeroSection
-            title={hText[1].header}
-            subtitle={hText[1].subheader}
-            image={
-              "https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            }
-          />
-
+          <Box>
+            <HeroSection
+              title={hText[0].header}
+              subtitle={hText[0].subheader}
+              Component={HeroCode}
+              reverse={true}
+            />
+          </Box>
+          <Box>
+            <HeroSection
+              title={hText[1].header}
+              subtitle={hText[1].subheader}
+              Component={HeroCode}
+              projectLink={"http://www"}
+              contactLink={"http://ww"}
+            />
+          </Box>
           <Container className="">
             <WorkSection work={rSData.work} />
           </Container>
-          <Container className="py-20">
+          <Container className="lg:pt-8 md:pt-6 sm:pt-4">
             <ProjectsSection projects={rSData.projects} />
           </Container>
           <Footer />
