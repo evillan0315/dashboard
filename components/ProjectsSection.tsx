@@ -1,25 +1,12 @@
 // components/ProjectsSection.tsx
 
 import React from "react";
-import {
-  Box,
-  Button,
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-  Card,
-  CardContent,
-  Chip,
-  Grid,
-  Grid2,
-} from "@mui/material";
-import Project from "./Project";
-import { Projects } from "../types/models";
+import { Box, Typography, Grid2 } from "@mui/material";
+import Project from "./ProjectComponent";
+import Projects from "../types/projects";
 
 interface ProjectsSectionProps {
-  projects: Projects[] | null;
+  projects: Projects[];
 }
 
 const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {

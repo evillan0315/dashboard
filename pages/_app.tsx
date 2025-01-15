@@ -1,4 +1,4 @@
-import "../styles/global.css";
+import "../styles/global.scss";
 import * as React from "react";
 import { AppProvider } from "@toolpad/core/nextjs";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";

@@ -56,7 +56,7 @@ export interface Projects {
     features: string[];
   };
   deployment: {
-    tools: string[];
+    technologies: string[];
     features: string[];
   };
 }

@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import ResumeSection from "../components/Resume";
 import { styled, useTheme } from "@mui/material/styles";
-import ResumeData, { heroText } from "../data/resume";
+import ResumeData, { heroText, Projects, Testimonials } from "../data/resume";
 
 import Footer from "../components/Footer";
 import { Login, Logout } from "@mui/icons-material";
@@ -33,7 +33,16 @@ import language from "react-syntax-highlighter/dist/esm/languages/hljs/1c";
 import { CardBody, CardContainer, CardItem } from "../components/ui/3D-Card";
 import Image from "next/image";
 import { FaAws, FaGit, FaNodeJs, FaPython, FaReact } from "react-icons/fa";
-
+import Logo from "../components/Logo";
+import CloudinaryUpload from "../components/CloudinaryUpload";
+import { ContainerScroll } from "../components/ui/ContainerScroll";
+import ContainerScrollSection from "../components/ContainerScrollSection";
+import BackgroundLinesSection from "../components/BackgroundLinesSection";
+import { ClassNames } from "@emotion/react";
+import TestimonialsSection from "../components/TestimonialsSection";
+import ScrollIMage from "../assets/images/code-python-01.png";
+import { TimelineSection } from "../components/TimelineSection";
+import Project from "../types/projects";
 const Skeleton = styled("div")<{ height: number }>(({ theme, height }) => ({
   backgroundColor: theme.palette.action.hover,
   borderRadius: theme.shape.borderRadius,
@@ -42,23 +51,42 @@ const Skeleton = styled("div")<{ height: number }>(({ theme, height }) => ({
 }));
 function CustomPageToolbar() {
   return (
-    <PageHeaderToolbar>
-      <Stack direction="row" spacing={1} alignItems="center">
-        <Button
-          variant="outlined"
-          size="small"
-          startIcon={<Login fontSize="inherit" />}
+    <PageHeaderToolbar
+      sx={{
+        width: "100%",
+        position: "fixed",
+        zIndex: 10,
+      }}
+    >
+      <Grid2 container direction="row" alignContent={"center"}>
+        <Grid2>
+          <Logo width={70} height={70} />
+        </Grid2>
+
+        {/* <Grid2
+          container
+          direction="row"
+          spacing={1}
+          alignItems="center"
+          justifyItems={"center"}
+          width={"100%"}
         >
-          Login
-        </Button>
-        <Button
-          variant="outlined"
-          size="small"
-          startIcon={<Logout fontSize="inherit" />}
-        >
-          Logout
-        </Button>
-      </Stack>
+          <Button
+            variant="outlined"
+            size="small"
+            startIcon={<Login fontSize="inherit" />}
+          >
+            Login
+          </Button>
+          <Button
+            variant="outlined"
+            size="small"
+            startIcon={<Logout fontSize="inherit" />}
+          >
+            Logout
+          </Button>
+        </Grid2> */}
+      </Grid2>
     </PageHeaderToolbar>
   );
 }
@@ -70,33 +98,64 @@ function CustomPageHeader() {
   );
 }
 export default function HomePage() {
+  const scImage = ScrollIMage;
   const hText = heroText;
   const rSData = ResumeData;
+  const [projects, setProjects] = React.useState<Project[]>([]); // Store fetched projects data
+
+  React.useEffect(() => {
+    // Fetch projects data from the backend API
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch("/api/projects"); // Update this if needed
+        const data = await res.json();
+        setProjects(data);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+
+    fetchProjects();
+  }, []); // Only run on mount
   const codeB = {
-    code: `function AppLayout({ children }: { children: React.ReactNode }) {
-  const { data: session } = useSession();
-  return (
-    <React.Fragment>
-      <Head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
-      <AppProvider
-        theme={undefined}
-        navigation={NAVIGATION}
-        branding={BRANDING}
-        session={session}
-        authentication={AUTHENTICATION}
-      >
-        <div className="relative h-screen w-full grid-background bg-zinc-950 overflow-scroll">
-          {children}
-        </div>
-      </AppProvider>
-    </React.Fragment>
-  );
-}` as string,
-    language: "typescript",
-    filename: "",
+    code: `
+require("dotenv").config(); // This should be at the top
+const express = require("express");
+const cors = require("./middlewares/corsConfig");
+const textRoutes = require("./routes/textRoutes");
+const testRoutes = require("./routes/testRoutes");
+const resultRoutes = require("./routes/resultRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
+const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
+const connectToDatabase = require("./database/database");
+const bodyParser = require("body-parser");
+const app = express();
+app.use(bodyParser.json());
+app.use(cors);
+
+// Connect to the database
+connectToDatabase();
+
+// Define routes
+app.use("/api/auth", authRoutes);
+app.use("/api/text", textRoutes);
+app.use("/api/results", resultRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api", uploadRoutes);
+//Testing
+app.use("/api/test", testRoutes);
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log("Server running on http://localhost:5000");
+});
+` as string,
+    language: "javascript",
+    filename: "server.js",
   };
+  const scrollImage =
+    "https://res.cloudinary.com/dt3mokrx9/image/upload/v1736800049/uploads/vadercun9cishgyghtsa.png";
   const Card3D = () => {
     return (
       <>
@@ -113,7 +172,6 @@ export default function HomePage() {
                 {hText[2].header}
               </Typography>
             </CardItem>
-
             <CardItem translateZ="100" className="w-full py-6">
               <Image
                 src={
@@ -166,59 +224,64 @@ export default function HomePage() {
     );
   };
   return (
-    <>
-      <div className="relative h-screen">
-        <PageContainer
-          maxWidth={false}
-          sx={{ padding: 0 }}
-          slots={{
-            header: CustomPageHeader,
-          }}
-        >
-          <HeroSection
+    <Box className="relative h-screen w-full">
+      <PageContainer
+        maxWidth={false}
+        component={"div"}
+        sx={{}}
+        slots={{
+          header: CustomPageHeader,
+        }}
+      >
+        <div className="mt-10">
+          <BackgroundLinesSection
             title={rSData.basics.quotes[0]}
             subtitle={rSData.basics.subheading}
             projectLink={"#"}
             contactLink={"#"}
           />
+        </div>
+        <Container>
+          <ContainerScrollSection
+            title={hText[5].header}
+            subtitle={hText[5].subheader}
+            image={hText[5].image}
+          />
+        </Container>
+        <HeroSection
+          title={hText[0].header}
+          subtitle={hText[0].subheader}
+          Component={Card3D}
+          reverse={true}
+        />
+        <TimelineSection projects={projects} />
+        <SkillsSection skills={rSData.skills} />
+        <HeroSection
+          title={hText[3].header}
+          subtitle={hText[3].subheader}
+          projectLink={"#"}
+          contactLink={"#"}
+        />
+        <HeroSection
+          title={hText[1].header}
+          subtitle={hText[1].subheader}
+          Component={HeroCode}
+          projectLink={"#"}
+          contactLink={"#"}
+        />
+        <HeroSection
+          title={hText[4].header}
+          subtitle={hText[4].subheader}
+          Component={CloudinaryUpload}
+          projectLink={"#"}
+          contactLink={"#"}
+          reverse
+        />
 
-          <SkillsSection skills={rSData.skills} />
-
-          <Box>
-            <HeroSection
-              title={hText[0].header}
-              subtitle={hText[0].subheader}
-              Component={Card3D}
-              reverse={true}
-            />
-          </Box>
-          <Box>
-            <HeroSection
-              title={hText[3].header}
-              subtitle={hText[3].subheader}
-              projectLink={"#"}
-              contactLink={"#"}
-            />
-          </Box>
-          <Box>
-            <HeroSection
-              title={hText[1].header}
-              subtitle={hText[1].subheader}
-              Component={HeroCode}
-              projectLink={"#"}
-              contactLink={"#"}
-            />
-          </Box>
-          {/*           <Container className="">
-            <WorkSection work={rSData.work} />
-          </Container> */}
-          {/*           <Container className="lg:pt-8 md:pt-6 sm:pt-4">
-            <ProjectsSection projects={rSData.projects} />
-          </Container> */}
-          <Footer />
-        </PageContainer>
-      </div>
-    </>
+        <TestimonialsSection />
+        <Footer />
+      </PageContainer>
+    </Box>
   );
 }
 HomePage.getLayout = (page: React.ReactNode) => page;

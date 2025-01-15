@@ -1,11 +1,11 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["tracing"]
+}
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
 }
 
 model User {
@@ -66,4 +66,34 @@ model Post {
   published Boolean @default(false)
   authorId  String?
   author    User?   @relation(fields: [authorId], references: [id])
+}
+
+model Project {
+  id           Int           @id @default(autoincrement())
+  name         String
+  startDate    DateTime
+  endDate      DateTime
+  description  String
+  url          String
+  frontendId   Int           @unique
+  backendId    Int           @unique
+  databaseId   Int           @unique
+  apiId        Int           @unique
+  deploymentId Int           @unique
+  api          TechnologySet @relation("ApiRelation", fields: [apiId], references: [id], map: "Project_Api_fkey")
+  backend      TechnologySet @relation("BackendRelation", fields: [backendId], references: [id], map: "Project_Backend_fkey")
+  database     TechnologySet @relation("DatabaseRelation", fields: [databaseId], references: [id], map: "Project_Database_fkey")
+  deployment   TechnologySet @relation("DeploymentRelation", fields: [deploymentId], references: [id], map: "Project_Deployment_fkey")
+  frontend     TechnologySet @relation("FrontendRelation", fields: [frontendId], references: [id], map: "Project_Frontend_fkey")
+}
+
+model TechnologySet {
+  id                 Int      @id @default(autoincrement())
+  technologies       String[]
+  features           String[]
+  projectsApi        Project? @relation("ApiRelation")
+  projectsBackend    Project? @relation("BackendRelation")
+  projectsDatabase   Project? @relation("DatabaseRelation")
+  projectsDeployment Project? @relation("DeploymentRelation")
+  projectsFrontend   Project? @relation("FrontendRelation")
 }

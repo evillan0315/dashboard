@@ -62,10 +62,8 @@ const theme = createTheme({
       main: red.A400,
     },
     background: {
-      default:
-        "linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px",
-      paper:
-        "linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px",
+      default: "transparent",
+      paper: "transparent",
     },
     text: {
       primary: "#333",
@@ -73,7 +71,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: `${dmSans.style.fontFamily}, ${caveat.style.fontFamily}, ${roboto.style.fontFamily}, sans-serif`,
+    fontFamily: `${roboto.style.fontFamily}, ${dmSans.style.fontFamily}, ${lato.style.fontFamily}, sans-serif`,
     h1: {
       fontSize: "2.5rem",
       fontWeight: 500,
